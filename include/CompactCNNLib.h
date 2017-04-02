@@ -82,7 +82,7 @@ namespace CompactCNNLib
             int cols = 0;
             int rows = 0;
             int channels = 0;
-			unsigned char* data = nullptr;    //8-bit grayscale, BGR and BGRA image formats supported.
+            unsigned char* data = nullptr;    //8-bit grayscale, BGR and BGRA image formats supported.
             size_t step = 0;
 
             ImageData() = default;

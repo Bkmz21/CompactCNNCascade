@@ -1,6 +1,6 @@
 ﻿## Compact Convolutional Neural Network Cascade ##
 
-This is a binary library for very fast single object class detection in images using CPU or GPU.<br>
+This is a binary library for very fast simple object detection in images using CPU or GPU.<br>
 Implemented of the algorithm described in the following paper:
 
 	I.A. Kalinovskii, V.G. Spitsyn,
@@ -17,7 +17,7 @@ Supported Nvidia GPUs with compute capability 3.0 and higher (library builded wi
 This image with size 4800x2400 pixels was processed for 400 ms on GT640M GPU at searches minimum face size of 20 pixels.<br>
 This detector capable of processing 4K video stream in real time.<br>
 
-You can trainig own cascade using [Microsoft Cognitive Toolkit](https://github.com/Microsoft/CNTK) (recommended version [1.7.2](https://github.com/Microsoft/CNTK/releases/tag/v1.7.2))<br>
+You can trainig own cascade using [Microsoft Cognitive Toolkit](https://github.com/Microsoft/CNTK) (recommended version [1.7.2](https://github.com/Microsoft/CNTK/releases/tag/v1.7.2)).<br>
 You should not change model prototype (see cntk folder). Other CNN architectures are currently not supported.<br>
 
 If you need the source code, a commercial license is needed.
