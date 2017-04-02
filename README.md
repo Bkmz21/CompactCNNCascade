@@ -1,6 +1,6 @@
 ﻿## Compact Convolutional Neural Network Cascade ##
 
-This is a binary library for very fast single object class detection in images using CPU or GPU.
+This is a binary library for very fast single object class detection in images using CPU or GPU.<br>
 Implemented of the algorithm described in the following paper:
 
 	I.A. Kalinovskii, V.G. Spitsyn,
@@ -10,11 +10,11 @@ Implemented of the algorithm described in the following paper:
 If you use the provided binaries for your work, please cite this paper. 
 
 examples/main.cpp shows how to use the library.<br>
-You need a processor with AVX or AVX2 (2x speed up due to used INT16) instruction set support (use the appropriate version of dll).<br>
+You need a processor with AVX or AVX2 (2x speed up due to used INT16) instruction set support.<br>
 Supported Nvidia GPUs with compute capability 3.0 and higher (library builded with CUDA 8.0).<br>
 
 ![Examples](/test_images/7.jpg_result.jpg "Detection example")
-This image with resolution 4800x2400 pixels was processed for 400 ms on GT640M GPU at searches minimum face size of 20 pixels.<br>
+This image with size 4800x2400 pixels was processed for 400 ms on GT640M GPU at searches minimum face size of 20 pixels.<br>
 This detector capable of processing 4K video stream in real time.<br>
 
 You can trainig own cascade using [Microsoft Cognitive Toolkit](https://github.com/Microsoft/CNTK) (recommended version [1.7.2](https://github.com/Microsoft/CNTK/releases/tag/v1.7.2))<br>
