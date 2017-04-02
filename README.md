@@ -26,5 +26,5 @@ If you need the source code, a commercial license is needed.
 
 For any additional information contact me at <kua_21@mail.ru>.
 
-Copyright (c) 2017, Ilya Kalinovskii.
+Copyright (c) 2017, Ilya Kalinovskii.<br>
 All rights reserved.
