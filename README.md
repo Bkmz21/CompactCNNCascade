@@ -10,7 +10,7 @@ Implemented of the algorithm described in the following paper:
 If you use the provided binaries for your work, please cite this paper. 
 
 examples/main.cpp shows how to use the library.<br>
-You need a processor with AVX or AVX2 (2x speed up due to used INT16) instruction set support.<br>
+You need a processor with AVX or AVX2 (1.6x speed up due to used INT16) instruction set support.<br>
 Supported Nvidia GPUs with compute capability 3.0 and higher (library builded with CUDA 8.0).<br>
 
 ![Examples](/test_images/7.jpg_result.jpg "Detection example")
