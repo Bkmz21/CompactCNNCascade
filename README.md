@@ -16,6 +16,31 @@ Supported Nvidia GPUs with compute capability 3.0 and higher (library builded wi
 ![Examples](/test_images/7.jpg_result.jpg "Detection example")
 This image has a resolution of 4800x2400 was processed for 400 ms on GT640M GPU at searches minimum face of size 20x20 pixels. This detector capable of processing 4K video stream in real time.<br>
 
+Comparison on Windows
+-------------
+
+| Method | FPS |
+| ------ | ------ |
+| [OpenCV 3.2] (http://opencv.org/) | 2.7 |
+| [Simd Library] (https://github.com/ermig1979/Simd) | 12.1 |
+| CompactCNN-AVX (CPU) | 32.2 |
+| CompactCNN-AVX2 (CPU) | 53.5 |
+| CompactCNN-AVX (GPU) | 70.9 |
+
+* 1280x720 video size (HD), scale factor = 1.15, minimal window size = 40.
+* Intel Core i7-4690 CPU @ 3.5GHz, single-threading computation
+* Nvidia GeForce GT640M GPU, 384 CUDA cores
+* OpenCV classifier model: haarcascade_frontalface_default.xml	
+
+Evaluation
+-------------
+FDDB: http://vis-www.cs.umass.edu/fddb/index.html
+
+![Evaluation on FDDB](FDDB-results.png "Evaluation on FDDB")
+
+* scale_factor = 1.05, min_face_size = 15
+* equalize = false, reflection = false
+
 You can trainig own cascade using [Microsoft Cognitive Toolkit](https://github.com/Microsoft/CNTK) (recommended version [1.7.2](https://github.com/Microsoft/CNTK/releases/tag/v1.7.2)).<br>
 You should not change model prototype (see cntk folder). Other CNN architectures are currently not supported.<br>
 
