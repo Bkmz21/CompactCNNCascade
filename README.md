@@ -16,13 +16,13 @@ Supported Nvidia GPUs with compute capability 3.0 and higher (library builded wi
 ![Examples](/test_images/7.jpg_result.jpg "Detection example")
 This image has a resolution of 4800x2400 was processed for 400 ms on GT640M GPU at searches minimum face of size 20x20 pixels. This detector capable of processing 4K video stream in real time.<br>
 
-Comparison on Windows
+Speed comparison
 -------------
 
 | Method | FPS |
 | ------ | ------ |
 | [OpenCV 3.2](http://opencv.org/) | 2.7 |
-| [Simd Library](https://github.com/ermig1979/Simd) | 12.1 |
+| [Simd library](https://github.com/ermig1979/Simd) | 12.1 |
 | CompactCNN-AVX (CPU) | 32.2 |
 | CompactCNN-AVX2 (CPU) | 53.5 |
 | CompactCNN-AVX (GPU) | 81.3 |
