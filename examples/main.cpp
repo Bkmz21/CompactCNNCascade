@@ -1,9 +1,9 @@
 /*
-*	Copyright (c) 2017, Ilya Kalinovskii
+*	Copyright (c) 2017, Ilya Kalinovskiy
 *	All rights reserved.
 *
 *	This is an implementation of the algorithm described in the following paper:
-*		I.A. Kalinovskii, V.G. Spitsyn,
+*		I.A. Kalinovskiy, V.G. Spitsyn,
 *		Compact Convolutional Neural Network Cascade for Face Detection,
 *		http://arxiv.org/abs/1508.01292.
 *
@@ -18,8 +18,9 @@
 */
 
 #include "CompactCNNLib.h"
-#pragma comment(lib, "CompactCNNLib_AVX_x64.lib")
-//#pragma comment(lib, "CompactCNNLib_AVX2_x64.lib")
+//#pragma comment(lib, "CompactCNNLib_AVX2_CPU_ONLY_x64.lib")
+#pragma comment(lib, "CompactCNNLib_AVX_CUDA_x64.lib")
+//#pragma comment(lib, "CompactCNNLib_AVX_OCL_x64.lib")
 
 #include <opencv2/opencv.hpp>
 #pragma comment(lib, "opencv_core300.lib")

@@ -1,9 +1,9 @@
 /*
-*    Copyright (c) 2017, Ilya Kalinovskii
+*    Copyright (c) 2017, Ilya Kalinovskiy
 *    All rights reserved.
 *
 *    This is an implementation of the algorithm described in the following paper:
-*        I.A. Kalinovskii, V.G. Spitsyn,
+*        I.A. Kalinovskiy, V.G. Spitsyn,
 *        Compact Convolutional Neural Network Cascade for Face Detection,
 *        http://arxiv.org/abs/1508.01292.
 *
@@ -17,6 +17,7 @@
 *    IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 */
 
+#pragma once
 
 //#define CNNOBJECTDETECTOR_EXPORTS
 #ifdef CNNOBJECTDETECTOR_EXPORTS
@@ -89,7 +90,7 @@ namespace CompactCNNLib
             ImageData(int _cols, int _rows, int _channels, unsigned char* _data, size_t _step)
                 : cols(_cols), rows(_rows), channels(_channels), data(_data), step(_step) { }
         };
-		
+
         struct Param
         {
             //Detection
@@ -112,7 +113,7 @@ namespace CompactCNNLib
             bool reflection = true;
 
             //Processing
-            Pipeline pipeline = Pipeline::CPU;
+            Pipeline pipeline = Pipeline::GPU;
             //This detector is optimized for Intel CPU and Nvidia GPU.
             //GPU_CPU mode run processing image pyramid on both devices simultaneously.
 
@@ -134,8 +135,10 @@ namespace CompactCNNLib
             //However you can specify the output number of the CNN that should be calculated.
 
             //Device
-            bool device_info = false;    //Displays information about the available CUDA devices.
-            int cuda_device_id = 0;      //Index of the CUDA device to be used.
+            bool device_info = true;    //Displays information about the available CUDA devices.
+            int cuda_device_id = 0;     //Index of the CUDA device to be used.
+			int cl_platform_id = -1;	//Index of the OpenCL platform to be used.
+			int cl_device_id = -1;		//Index of the OpenCL device to be used.
 
             Param()
             {
@@ -177,6 +180,8 @@ namespace CompactCNNLib
 
         int getNumThreads() const;
         void setNumThreads(int num_threads);
+
+        int getGrayImage32F(ImageData* img, Pipeline pipeline);
 
         static void CNTKDump2Binary(const char* binary_file, const char* cntk_model_dump);
     };
