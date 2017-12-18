@@ -28,7 +28,7 @@ Speed comparison
 | CompactCNN-AVX (GPU) | 81.3 |
 
 * 1280x720 video size (HD), scale factor = 1.15, minimal face size = 40.
-* Intel Core i7-4690 CPU @ 3.5GHz, single-threading computation
+* Intel Core i5-4690 CPU @ 3.5GHz, single-threading computation
 * Nvidia GeForce GT640M GPU, 384 CUDA cores
 * OpenCV classifier model: haarcascade_frontalface_default.xml	
 
@@ -40,6 +40,15 @@ FDDB: http://vis-www.cs.umass.edu/fddb/index.html
 
 * scale factor = 1.05, minimal face size = 15
 * equalize = false, reflection = false
+
+Speed of different implementations
+-------------
+
+![Speed of different implementations](speed-test.png "Speed of different implementations")
+
+* 1920x1080 video size (Full HD), scale factor = 1.15, minimal face size - [40, 240].
+* Intel Core i5-4690 CPU @ 3.5GHz, single-threading computation
+* Nvidia GeForce GTX1080Ti GPU, 3584 CUDA cores
 
 You can trainig own cascade using [Microsoft Cognitive Toolkit](https://github.com/Microsoft/CNTK) (recommended version [1.7.2](https://github.com/Microsoft/CNTK/releases/tag/v1.7.2)).<br>
 You should not change model prototype (see cntk folder). Other CNN architectures are currently not supported.<br>
