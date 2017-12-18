@@ -3,7 +3,7 @@
 This is a binary library for very fast detection of simple objects in images using CPU or GPU.<br>
 Implemented of the algorithm described in the following paper:
 
-	I.A. Kalinovskii, V.G. Spitsyn,
+	I.A. Kalinovskiy, V.G. Spitsyn,
 	Compact Convolutional Neural Network Cascade for Face Detection,
 	http://arxiv.org/abs/1508.01292
 
@@ -27,7 +27,7 @@ Speed comparison
 | CompactCNN-AVX2 (CPU) | 53.5 |
 | CompactCNN-AVX (GPU) | 81.3 |
 
-* 1280x720 video size (HD), scale factor = 1.15, minimal face size = 40.
+* 1280x720 video size (HD), scale factor = 1.15, minimal face size = 40
 * Intel Core i5-4690 CPU @ 3.5GHz, single-threading computation
 * Nvidia GeForce GT640M GPU, 384 CUDA cores
 * OpenCV classifier model: haarcascade_frontalface_default.xml	
@@ -46,7 +46,7 @@ Speed of different implementations
 
 ![Speed of different implementations](speed-test.png "Speed of different implementations")
 
-* 1920x1080 video size (Full HD), scale factor = 1.15, minimal face size - [40, 240].
+* 1920x1080 video size (Full HD), scale factor = 1.15, minimal face size = [40, 240]
 * Intel Core i5-4690 CPU @ 3.5GHz, single-threading computation
 * Nvidia GeForce GTX1080Ti GPU, 3584 CUDA cores
 
@@ -59,5 +59,5 @@ If you need the source code, a commercial license is needed.
 
 For any additional information contact me at <kua_21@mail.ru>.
 
-Copyright (c) 2017, Ilya Kalinovskii.<br>
+Copyright (c) 2017, Ilya Kalinovskiy.<br>
 All rights reserved.
