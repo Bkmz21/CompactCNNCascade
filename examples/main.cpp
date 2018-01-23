@@ -48,6 +48,8 @@ void video_test(std::string fname = "")
 	//	param.models[i] = cntk_bin[i].c_str();
 	//}
 
+	param.facial_analysis = true;
+
 	if (face_detector.Init(param) < 0) return;
 
 	cv::VideoCapture capture;
@@ -78,7 +80,21 @@ void video_test(std::string fname = "")
 		printf("time detect: %5.3f ms\n", secs * 1000.);
 
 		for (int i = 0; i < num_faces; ++i)
+		{
 			cv::rectangle(frame, cv::Rect(faces[i].x, faces[i].y, faces[i].width, faces[i].height), cv::Scalar(0, 0, 255), 3);
+		
+			std::stringstream ss_gender;
+			ss_gender << "gender: " << (faces[i].gender ? "female" : "male");
+			putText(frame, ss_gender.str().c_str(), cv::Point(faces[i].x, faces[i].y + faces[i].height + 20), cv::FONT_HERSHEY_COMPLEX_SMALL, 1, cv::Scalar(0, 255, 0), 1, cv::LINE_AA);
+			
+			std::stringstream ss_smile;
+			ss_smile << "smile: " << (faces[i].smile ? "false" : "true");
+			putText(frame, ss_smile.str().c_str(), cv::Point(faces[i].x, faces[i].y + faces[i].height + 40), cv::FONT_HERSHEY_COMPLEX_SMALL, 1, cv::Scalar(0, 255, 0), 1, cv::LINE_AA);
+			
+			std::stringstream ss_glasses;
+			ss_glasses << "glasses: " << (faces[i].glasses ? "false" : "true");
+			putText(frame, ss_glasses.str().c_str(), cv::Point(faces[i].x, faces[i].y + faces[i].height + 60), cv::FONT_HERSHEY_COMPLEX_SMALL, 1, cv::Scalar(0, 255, 0), 1, cv::LINE_AA);
+		}
 
 		int frame_index = abs(capture.get(cv::CAP_PROP_POS_FRAMES));
 		time = frame_index > 1 ? time + secs : secs;

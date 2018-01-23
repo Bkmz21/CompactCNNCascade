@@ -1,5 +1,5 @@
 /*
-*    Copyright (c) 2017, Ilya Kalinovskiy
+*    Copyright (c) 2018, Ilya Kalinovskiy
 *    All rights reserved.
 *
 *    This is an implementation of the algorithm described in the following paper:
@@ -74,6 +74,10 @@ namespace CompactCNNLib
             int height = 0;
             float score = 0.f;
 
+            int gender = -1;   //0 - male, 1 - female
+            int smile = -1;    //0 - true, 1 - false
+            int glasses = -1;  //0 - true, 1 - false
+
             Face() = default;
             Face(int _x, int _y, int _width, int _height, float _score = 0.f)
                 : x(_x), y(_y), width(_width), height(_height), score(_score) { }
@@ -137,8 +141,11 @@ namespace CompactCNNLib
             //Device
             bool device_info = true;    //Displays information about the available CUDA devices.
             int cuda_device_id = 0;     //Index of the CUDA device to be used.
-			int cl_platform_id = -1;	//Index of the OpenCL platform to be used.
-			int cl_device_id = -1;		//Index of the OpenCL device to be used.
+            int cl_platform_id = -1;    //Index of the OpenCL platform to be used.
+            int cl_device_id = -1;      //Index of the OpenCL device to be used.
+
+            //Experimental
+            bool facial_analysis = false;
 
             Param()
             {
