@@ -50,7 +50,7 @@ Speed of different implementations
 * Intel Core i5-4690 CPU @ 3.5GHz, single-threading computation
 * Nvidia GeForce GTX1080Ti GPU, 3584 CUDA cores
 
-Also you can get a quick (0.1 ms per face) facial attributes estimate (gender, glasses and smile).<br>
+Also you can quick get (0.1 ms per face) a facial attributes estimate (gender, glasses and smile).<br>
 
 You can trainig own cascade using [Microsoft Cognitive Toolkit](https://github.com/Microsoft/CNTK) (recommended version [1.7.2](https://github.com/Microsoft/CNTK/releases/tag/v1.7.2)).<br>
 You should not change model prototype (see cntk folder). Other CNN architectures are currently not supported.<br>
