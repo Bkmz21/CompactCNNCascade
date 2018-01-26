@@ -108,8 +108,8 @@ namespace CompactCNNLib
             int min_neighbors = 2;         //How many neighbors each candidate rectangle should have to reject it.
 
             //Precision
-            DetectPrecision detect_precision = DetectPrecision::high;    //Specifies condition for combining responses of stages of the cascade.
-            float treshold[3];                                           //Threshold value for each stage of the cascade. Range of values [-1.7159, 1.7159].
+            DetectPrecision detect_precision = DetectPrecision::normal;   //Specifies condition for combining responses of stages of the cascade.
+            float treshold[3];                                            //Threshold value for each stage of the cascade. Range of values [-1.7159, 1.7159].
 
             //Pre-processing of image areas identified by the first stage of the cascade.
             bool drop_detect = true;    //Fast reject candidate rectangles.
