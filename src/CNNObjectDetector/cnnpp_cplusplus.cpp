@@ -19,7 +19,7 @@
 
 
 #include "cnnpp_cplusplus.h"
-#include <math.h>
+#include <cmath>
 #include <stdio.h>
 #include <algorithm>
 
@@ -580,7 +580,7 @@ namespace NeuralNetworksLib
 #endif
 
 					float avr = fmaxf(fmaxf(c1, c2), fmaxf(c3, c4));
-					//avr = (*scale * avr -* bn_m) / std::sqrtf(*bn_v);
+					//avr = (*scale * avr -* bn_m) / sqrtf(*bn_v);
 					//avr = *bn_s * avr + *bn_b;
 					avr = *bn_w * avr + *bn_b;
 
@@ -749,7 +749,7 @@ namespace NeuralNetworksLib
 				c = tanhf(c);
 #endif
 
-				//c = (*scale * c -* bn_m) / std::sqrtf(*bn_v);
+				//c = (*scale * c -* bn_m) / sqrtf(*bn_v);
 				//c = *bn_s * c + *bn_b;
 				c = *bn_w * c + *bn_b;
 

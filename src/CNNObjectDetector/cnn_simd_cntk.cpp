@@ -23,7 +23,7 @@
 #include <sstream>
 #include <iterator>
 #include <immintrin.h>
-#include <algorithm>
+#include <cmath>
 
 #ifdef USE_OMP
 #	include <omp.h>
@@ -1575,8 +1575,8 @@ namespace NeuralNetworksLib
 					ParserDump(param, dump_cntk, "bn" + std::to_string(i + 1) + std::to_string(j + 1), "runVariance");
 					float bn_runVariance = param[0] + 0.00001f;
 
-					cnn.bn_weight[i][j] = bn_scale / std::sqrtf(bn_runVariance);
-					cnn.bn_bias[i][j] = bn_bias - bn_runMean * bn_scale / std::sqrtf(bn_runVariance);
+					cnn.bn_weight[i][j] = bn_scale / sqrtf(bn_runVariance);
+					cnn.bn_bias[i][j] = bn_bias - bn_runMean * bn_scale / sqrtf(bn_runVariance);
 
 					cnn.leakyReLU_w1[i][j] *= cnn.bn_weight[i][j];
 					cnn.leakyReLU_w2[i][j] *= cnn.bn_weight[i][j];
@@ -1655,8 +1655,8 @@ namespace NeuralNetworksLib
 				ParserDump(param, dump_cntk, "bn_h", "runVariance", i);
 				float bn_runVariance = param[0] + 0.00001f;
 
-				cnn.snn_hl_bn_weight[i] = bn_scale / std::sqrtf(bn_runVariance);
-				cnn.snn_hl_bn_bias[i] = bn_bias - bn_runMean * bn_scale / std::sqrtf(bn_runVariance);
+				cnn.snn_hl_bn_weight[i] = bn_scale / sqrtf(bn_runVariance);
+				cnn.snn_hl_bn_bias[i] = bn_bias - bn_runMean * bn_scale / sqrtf(bn_runVariance);
 			}
 
 			ParserDump(param, dump_cntk, "z", "arrayOfFunctions[0].W");

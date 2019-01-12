@@ -30,6 +30,8 @@
 #	include "CL\opencl.h"
 #endif
 
+#include <chrono>
+
 
 //================================================================================================================================================
 
@@ -40,8 +42,7 @@ namespace NeuralNetworksLib
 	class Timer
 	{
 	private:
-		unsigned long long* counters;
-		unsigned long long  freq;
+		std::chrono::steady_clock::time_point* counters;
 
 	public:
 		Timer(int = 1, bool = false);
@@ -85,8 +86,7 @@ namespace NeuralNetworksLib
 		{
 		private:
 			cl_command_queue queue;
-			unsigned long long counters;
-			unsigned long long  freq;
+			std::chrono::steady_clock::time_point counters;
 
 		public:
 			Timer(cl_command_queue _queue = NULL, bool = false);

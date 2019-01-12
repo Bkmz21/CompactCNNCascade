@@ -19,7 +19,6 @@
 
 
 #include "timer.h"
-#include <Windows.h>
 #include <stdio.h>
 
 
@@ -31,8 +30,7 @@ namespace NeuralNetworksLib
 
 	Timer::Timer(int n, bool _start)
 	{
-		this->counters = new  unsigned __int64[n];
-		QueryPerformanceFrequency((LARGE_INTEGER*)&freq);
+		this->counters = new std::chrono::steady_clock::time_point[n];
 
 		if (_start)
 		{
@@ -49,13 +47,13 @@ namespace NeuralNetworksLib
 
 	void Timer::start(int counter) 
 	{
-		QueryPerformanceCounter((LARGE_INTEGER*)&this->counters[counter]);
+		this->counters[counter] = std::chrono::high_resolution_clock::now();
 	} 
 	double Timer::get(double multiply, int counter) 
 	{
-		unsigned __int64 end;
-		QueryPerformanceCounter((LARGE_INTEGER*)&end);
-		return (double(end - this->counters[counter]) / freq) * multiply;
+		auto end = std::chrono::high_resolution_clock::now();
+		std::chrono::duration<double> diff = end - this->counters[counter];
+		return diff.count() * multiply;
 	}
 	void Timer::print(double multiply, int counter)
 	{
@@ -120,8 +118,6 @@ namespace NeuralNetworksLib
 		Timer::Timer(cl_command_queue _queue, bool _start)
 		{
 			queue = _queue;
-			QueryPerformanceFrequency((LARGE_INTEGER*)&freq);
-
 			if (_start) start();
 		}
 		Timer::~Timer(void) { }
@@ -133,14 +129,14 @@ namespace NeuralNetworksLib
 		void Timer::start()
 		{
 			clFinish(queue);
-			QueryPerformanceCounter((LARGE_INTEGER*)&this->counters);
+			this->counters = std::chrono::high_resolution_clock::now();
 		}
 		double Timer::get(double multiply)
 		{
 			clFinish(queue);
-			unsigned __int64 end;
-			QueryPerformanceCounter((LARGE_INTEGER*)&end);
-			return (double(end - this->counters) / freq) * multiply;
+			auto end = std::chrono::high_resolution_clock::now();
+			std::chrono::duration<double> diff = end - this->counters;
+			return diff.count() * multiply;
 		}
 		void Timer::print(double multiply)
 		{
