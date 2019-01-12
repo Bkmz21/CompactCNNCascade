@@ -55,8 +55,6 @@ Also you can quick get (0.1 ms per face) a facial attributes estimate (gender, g
 You can trainig own cascade using [Microsoft Cognitive Toolkit](https://github.com/Microsoft/CNTK) (recommended version [1.7.2](https://github.com/Microsoft/CNTK/releases/tag/v1.7.2)).<br>
 You should not change model prototype (see cntk folder). Other CNN architectures are currently not supported.<br>
 
-If you need the source code, a commercial license is needed.
-
 ## Contact
 
 For any additional information contact me at <kua_21@mail.ru>.
