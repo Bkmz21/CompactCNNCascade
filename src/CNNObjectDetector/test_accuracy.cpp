@@ -37,7 +37,6 @@
 
 #include <sstream>
 #include <fstream>
-#include <windows.h>
 
 #ifdef USE_CUDA
 #	include "init_cuda.h"
