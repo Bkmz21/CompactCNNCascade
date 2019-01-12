@@ -35,7 +35,6 @@
 
 #include "timer.h"
 
-#include "resource.h"
 #include <sstream>
 #include <fstream>
 #include <windows.h>

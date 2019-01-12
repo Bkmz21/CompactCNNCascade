@@ -19,10 +19,11 @@
 
 
 #include "cnnpp_cl.h"
-#include "resource.h"
-#include <windows.h>
 #include <fstream>
 #include <sstream>
+#ifdef USE_RESOURCE
+#	include <windows.h>
+#endif
 
 
 //================================================================================================================================================

@@ -167,7 +167,7 @@ namespace NeuralNetworksLib
 		}
 		float dist(Rect& rect)
 		{
-			return sqrtf(static_cast<float>((cx - rect.cx)*(cx - rect.cx) + (cy - rect.cy)*(cy - rect.cy)));
+			return std::sqrtf(static_cast<float>((cx - rect.cx)*(cx - rect.cx) + (cy - rect.cy)*(cy - rect.cy)));
 		}
 
 		inline const Rect operator+(int offset)

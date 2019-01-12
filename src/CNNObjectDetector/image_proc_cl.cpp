@@ -19,8 +19,9 @@
 
 
 #include "image_proc_cl.h"
-#include "resource.h"
-#include <windows.h>
+#ifdef USE_RESOURCE
+	#include <windows.h>
+#endif
 
 
 //================================================================================================================================================

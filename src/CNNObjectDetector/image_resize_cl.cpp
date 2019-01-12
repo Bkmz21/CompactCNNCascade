@@ -19,8 +19,9 @@
 
 
 #include "image_resize_cl.h"
-#include "resource.h"
-#include <windows.h>
+#ifdef USE_RESOURCE
+	#include <windows.h>
+#endif
 
 
 //================================================================================================================================================
@@ -37,6 +38,7 @@ namespace NeuralNetworksLib
 		cl_kernel NearestNeighborInterpolation_cl = 0;
 		cl_kernel BilinearInterpolation_cl = 0;
 
+#ifdef USE_RESOURCE
 		HMODULE getCurrentModuleHandle()
 		{
 			HMODULE hMod = NULL;
@@ -47,6 +49,7 @@ namespace NeuralNetworksLib
 
 			return hMod;
 		}
+#endif
 
 		void ImageResizer::create_cl_program(cl_device_id _device, cl_context _context)
 		{
