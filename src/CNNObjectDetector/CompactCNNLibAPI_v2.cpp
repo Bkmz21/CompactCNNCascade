@@ -48,7 +48,7 @@ namespace CompactCNNLib
 		expr;					\
 		CNND_mutex.unlock();	\
 	
-	FaceDetector::Param paramConverter(CNNDetector::Param& CNND_param, CNNDetector::AdvancedParam& CNND_ad_param)
+	FaceDetector::Param paramConverter(CNNDetector::Param CNND_param, CNNDetector::AdvancedParam CNND_ad_param)
 	{
 		FaceDetector::Param param;
 
@@ -86,7 +86,7 @@ namespace CompactCNNLib
 
 		return param;
 	}
-	std::pair<CNNDetector::Param, CNNDetector::AdvancedParam> paramConverter(FaceDetector::Param& param)
+	std::pair<CNNDetector::Param, CNNDetector::AdvancedParam> paramConverter(FaceDetector::Param param)
 	{
 		CNNDetector::Param CNND_param;
 		CNNDetector::AdvancedParam CNND_ad_param;
@@ -234,11 +234,9 @@ namespace CompactCNNLib
 		std::vector<NeuralNetworksLib::CNNDetector::Detection> cnn_faces;
 		SIMD::Image_8u image(img.cols, img.rows, img.channels, img.data, (int)img.step);
 
-		try
-		{
+		//try {
 			CNND->Detect(cnn_faces, image);
-		}
-		catch (...) { }
+		//} catch (...) { }
 
 #ifdef PROFILE_DETECTOR
 		CNND->stat.print();

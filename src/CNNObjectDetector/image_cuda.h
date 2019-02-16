@@ -99,7 +99,7 @@ namespace NeuralNetworksLib
 			inline bool isEmpty() const { return dataHost == 0 && dataDevice == 0; }
 			inline void setSize(const Size& size) { width = size.width; height = size.height; }
 			inline Size getSize() const { return Size(width, height); }
-			TmpImage<type, pinned_mem>& operator=(TmpImage<type, pinned_mem>& img);
+			TmpImage<type, pinned_mem>& operator=(const TmpImage<type, pinned_mem>& img);
 		};
 		typedef TmpImage<uchar_, 0> Image_8u;
 		typedef TmpImage<uchar_, 1> Image_8u_pinned;
@@ -677,7 +677,7 @@ namespace NeuralNetworksLib
 		}
 
 		template <typename type, const int pinned_mem>
-		TmpImage<type, pinned_mem>& TmpImage<type, pinned_mem>::operator=(TmpImage<type, pinned_mem>& _img)
+		TmpImage<type, pinned_mem>& TmpImage<type, pinned_mem>::operator=(const TmpImage<type, pinned_mem>& _img)
 		{
 			if (this == &_img) return *this;
 			if (!isEmpty()) clear();
@@ -696,19 +696,20 @@ namespace NeuralNetworksLib
 			sharingDataDevice = _img.sharingDataDevice;
 			offsetDevice = _img.offsetDevice;
 
-			_img.width = 0;
-			_img.height = 0;
-			_img.size = 0;
-			_img.widthStepHost = 0;
-			_img.widthStepDevice = 0;
-			_img.heightStepDevice = 0;
-			_img.nChannel = 1;
-			_img.dataHost = 0;
-			_img.dataDevice = 0;
-			_img.alignDataHost = 4;
-			_img.sharingDataHost = false;
-			_img.sharingDataDevice = false;
-			_img.offsetDevice = 0;
+			TmpImage<type, pinned_mem>* pimg = const_cast<TmpImage<type, pinned_mem>*>(&_img);
+			pimg->width = 0;
+			pimg->height = 0;
+			pimg->size = 0;
+			pimg->widthStepHost = 0;
+			pimg->widthStepDevice = 0;
+			pimg->heightStepDevice = 0;
+			pimg->nChannel = 1;
+			pimg->dataHost = 0;
+			pimg->dataDevice = 0;
+			pimg->alignDataHost = 4;
+			pimg->sharingDataHost = false;
+			pimg->sharingDataDevice = false;
+			pimg->offsetDevice = 0;
 
 			return *this;
 		}

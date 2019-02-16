@@ -121,7 +121,7 @@ namespace NeuralNetworksLib
 			const uint_ scly = (src->height << QUANT_BIT) / dst->height + 1;
 
 			//cl_event kernel_completion;
-			size_t global_work_size[2] = { dst->width, dst->height };
+			size_t global_work_size[2] = { (size_t)dst->width, (size_t)dst->height };
 
 			switch (type_resize)
 			{

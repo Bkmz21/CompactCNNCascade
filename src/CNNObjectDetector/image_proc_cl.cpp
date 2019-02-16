@@ -111,7 +111,7 @@ namespace NeuralNetworksLib
 
 		int ImageConverter::Img8uToImg32fGRAY(Image_32f* dst, Image_8u* src, cl_command_queue _queue)
 		{
-			size_t global_work_size[2] = { roundUp(src->width, 2), roundUp(src->height, 2) };
+			size_t global_work_size[2] = { (size_t)roundUp(src->width, 2), (size_t)roundUp(src->height, 2) };
 
 			switch (src->nChannel)
 			{
@@ -155,7 +155,7 @@ namespace NeuralNetworksLib
 		{
 			Img8uToImg32fGRAY(dst, src, _queue);
 
-			size_t global_work_size_row[2] = { dst->width, dst->height };
+			size_t global_work_size_row[2] = { (size_t)dst->width, (size_t)dst->height };
 			clERR(clSetKernelArg(ImgRowBlur_cl, 0, sizeof(temp_buff->dataDevice), &temp_buff->dataDevice));
 			clERR(clSetKernelArg(ImgRowBlur_cl, 1, sizeof(temp_buff->widthStepDevice), &temp_buff->widthStepDevice));
 			clERR(clSetKernelArg(ImgRowBlur_cl, 2, sizeof(dst->dataDevice), &dst->dataDevice));
@@ -165,7 +165,7 @@ namespace NeuralNetworksLib
 			clERR(clSetKernelArg(ImgRowBlur_cl, 6, sizeof(kernel_row[2]), &kernel_row[2]));
 			clERR(clEnqueueNDRangeKernel(_queue, ImgRowBlur_cl, 2, NULL, global_work_size_row, NULL, 0, NULL, NULL));
 
-			size_t global_work_size_col[2] = { dst->width, dst->height - 2 };
+			size_t global_work_size_col[2] = { (size_t)dst->width, (size_t)dst->height - 2 };
 			clERR(clSetKernelArg(ImgColBlur_cl, 0, sizeof(dst->dataDevice), &dst->dataDevice));
 			clERR(clSetKernelArg(ImgColBlur_cl, 1, sizeof(dst->widthStepDevice), &dst->widthStepDevice));
 			clERR(clSetKernelArg(ImgColBlur_cl, 2, sizeof(temp_buff->dataDevice), &temp_buff->dataDevice));

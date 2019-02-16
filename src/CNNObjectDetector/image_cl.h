@@ -108,7 +108,7 @@ namespace NeuralNetworksLib
 			inline bool isEmpty() const { return dataHost == 0 && dataDevice == 0; }
 			inline void setSize(const Size& size) { width = size.width; height = size.height; }
 			inline Size getSize() const { return Size(width, height); }
-			TmpImage<type, pinned_mem>& operator=(TmpImage<type, pinned_mem>& _img);
+			TmpImage<type, pinned_mem>& operator=(const TmpImage<type, pinned_mem>& _img);
 		};
 		typedef TmpImage<cl_uchar, 0> Image_8u;
 		//typedef TmpImage<cl_uchar, 1> Image_8u_pinned;
@@ -577,9 +577,9 @@ namespace NeuralNetworksLib
 		template <typename type, const int pinned_mem>
 		void TmpImage<type, pinned_mem>::copyDataDeviceToDevice(TmpImage* src, cl_event* _event = NULL)
 		{
-			const size_t src_origin[3] = { src->offsetDevice, 0, 0 };
-			const size_t dst_origin[3] = { offsetDevice, 0, 0 };
-			const size_t region[3] = { src->nChannel * src->width, src->height, 1 };
+			const size_t src_origin[3] = { (size_t)src->offsetDevice, 0, 0 };
+			const size_t dst_origin[3] = { (size_t)offsetDevice, 0, 0 };
+			const size_t region[3] = { (size_t)(src->nChannel * src->width), (size_t)src->height, 1 };
 
 			clERR(clEnqueueCopyBufferRect(
 				queue,
@@ -711,7 +711,7 @@ namespace NeuralNetworksLib
 		}
 
 		template <typename type, const int pinned_mem>
-		TmpImage<type, pinned_mem>& TmpImage<type, pinned_mem>::operator=(TmpImage<type, pinned_mem>& _img)
+		TmpImage<type, pinned_mem>& TmpImage<type, pinned_mem>::operator=(const TmpImage<type, pinned_mem>& _img)
 		{
 			if (this == &_img) return *this;
 			if (!isEmpty()) clear();
@@ -734,22 +734,23 @@ namespace NeuralNetworksLib
 			sharingDataDevice = _img.sharingDataDevice;
 			offsetDevice = _img.offsetDevice;
 
-			_img.context = 0;
-			_img.queue = 0;
-			_img.width = 0;
-			_img.height = 0;
-			_img.size = 0;
-			_img.widthStepHost = 0;
-			_img.heightStepHost = 0;
-			_img.widthStepDevice = 0;
-			_img.heightStepDevice = 0;
-			_img.nChannel = 1;
-			_img.dataHost = 0;
-			_img.dataDevice = 0;
-			_img.alignDataHost = 4;
-			_img.sharingDataHost = false;
-			_img.sharingDataDevice = false;
-			_img.offsetDevice = 0;
+			TmpImage<type, pinned_mem> *pimg = const_cast<TmpImage<type, pinned_mem>*>(&_img);
+			pimg->context = 0;
+			pimg->queue = 0;
+			pimg->width = 0;
+			pimg->height = 0;
+			pimg->size = 0;
+			pimg->widthStepHost = 0;
+			pimg->heightStepHost = 0;
+			pimg->widthStepDevice = 0;
+			pimg->heightStepDevice = 0;
+			pimg->nChannel = 1;
+			pimg->dataHost = 0;
+			pimg->dataDevice = 0;
+			pimg->alignDataHost = 4;
+			pimg->sharingDataHost = false;
+			pimg->sharingDataDevice = false;
+			pimg->offsetDevice = 0;
 
 			return *this;
 		}

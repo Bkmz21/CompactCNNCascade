@@ -446,7 +446,7 @@ namespace NeuralNetworksLib
 		int getGrayImage(CL::Image_32f* image) const;
 #endif
 
-		CNNDetector& operator=(CNNDetector& gpu_cnn_detector)
+		CNNDetector& operator=(const CNNDetector& gpu_cnn_detector)
 		{
 			*this = gpu_cnn_detector;
 			return *this;

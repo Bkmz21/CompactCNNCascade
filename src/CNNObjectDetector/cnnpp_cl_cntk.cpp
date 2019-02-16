@@ -618,13 +618,13 @@ namespace NeuralNetworksLib
 		{
 			if (device_type == CL_DEVICE_TYPE_CPU)
 			{
-				size_t global_work_size[2] = { roundUp(ROI.cols, 2), roundUp(ROI.rows, 2) };
+				size_t global_work_size[2] = { (size_t)roundUp(ROI.cols, 2), (size_t)roundUp(ROI.rows, 2) };
 				clERR(clEnqueueNDRangeKernel(_queue, conv_4x4x4_lrelu_bn_max_cl, 2, NULL, global_work_size, NULL, 0, NULL, NULL));
 			}
 			else
 			{
-				size_t global_work_size[2] = { roundUpMul(roundUp(ROI.cols, 2), block_size.width >> 1), roundUpMul(roundUp(ROI.rows, 2), block_size.height >> 1) };
-				size_t local_work_size[2] = { block_size.width >> 1, block_size.height >> 1 };
+				size_t global_work_size[2] = { (size_t)roundUpMul(roundUp(ROI.cols, 2), block_size.width >> 1), (size_t)roundUpMul(roundUp(ROI.rows, 2), block_size.height >> 1) };
+				size_t local_work_size[2] = { (size_t)(block_size.width >> 1), (size_t)(block_size.height >> 1) };
 				clERR(clEnqueueNDRangeKernel(_queue, conv_4x4x4_lrelu_bn_max_cl, 2, NULL, global_work_size, local_work_size, 0, NULL, NULL));
 			}
 		}
@@ -632,14 +632,14 @@ namespace NeuralNetworksLib
 		{
 			if (device_type == CL_DEVICE_TYPE_CPU)
 			{
-				size_t global_work_size[2] = { roundUp(ROI.cols, 2), roundUp(ROI.rows, 2) };
+				size_t global_work_size[2] = { (size_t)roundUp(ROI.cols, 2), (size_t)roundUp(ROI.rows, 2) };
 				clERR(clEnqueueNDRangeKernel(_queue, add_2_3_conv_4x3x3_lrelu_bn_max_L_cl, 2, NULL, global_work_size, NULL, 0, NULL, NULL));
 				clERR(clEnqueueNDRangeKernel(_queue, add_2_3_conv_4x3x3_lrelu_bn_max_R_cl, 2, NULL, global_work_size, NULL, 0, NULL, NULL));
 			}
 			else
 			{
-				size_t global_work_size[2] = { roundUpMul(roundUp(ROI.cols, 2), block_size.width >> 1), roundUpMul(roundUp(ROI.rows, 2), block_size.height >> 1) };
-				size_t local_work_size[2] = { block_size.width >> 1, block_size.height >> 1 };
+				size_t global_work_size[2] = { (size_t)roundUpMul(roundUp(ROI.cols, 2), block_size.width >> 1), (size_t)roundUpMul(roundUp(ROI.rows, 2), block_size.height >> 1) };
+				size_t local_work_size[2] = { (size_t)(block_size.width >> 1), (size_t)(block_size.height >> 1) };
 				clERR(clEnqueueNDRangeKernel(_queue, add_2_3_conv_4x3x3_lrelu_bn_max_L_cl, 2, NULL, global_work_size, local_work_size, 0, NULL, NULL));
 				clERR(clEnqueueNDRangeKernel(_queue, add_2_3_conv_4x3x3_lrelu_bn_max_R_cl, 2, NULL, global_work_size, local_work_size, 0, NULL, NULL));
 			}
@@ -648,7 +648,7 @@ namespace NeuralNetworksLib
 		{
 			if (device_type == CL_DEVICE_TYPE_CPU)
 			{
-				size_t global_work_size[2] = { roundUp(ROI.cols, 2), roundUp(ROI.rows, 2) };
+				size_t global_work_size[2] = { (size_t)roundUp(ROI.cols, 2), (size_t)roundUp(ROI.rows, 2) };
 				clERR(clEnqueueNDRangeKernel(_queue, add_2_3_conv_4x5x4_L_cl, 2, NULL, global_work_size, NULL, 0, NULL, NULL));
 				clERR(clEnqueueNDRangeKernel(_queue, add_2_3_conv_4x5x4_1_cl, 2, NULL, global_work_size, NULL, 0, NULL, NULL));
 				clERR(clEnqueueNDRangeKernel(_queue, add_2_3_conv_4x5x4_2_cl, 2, NULL, global_work_size, NULL, 0, NULL, NULL));
@@ -656,8 +656,8 @@ namespace NeuralNetworksLib
 			}
 			else
 			{
-				size_t global_work_size[2] = { roundUpMul(roundUp(ROI.cols, 2), block_size.width >> 1), roundUpMul(roundUp(ROI.rows, 2), block_size.height >> 1) };
-				size_t local_work_size[2] = { block_size.width >> 1, block_size.height >> 1 };
+				size_t global_work_size[2] = { (size_t)roundUpMul(roundUp(ROI.cols, 2), block_size.width >> 1), (size_t)roundUpMul(roundUp(ROI.rows, 2), block_size.height >> 1) };
+				size_t local_work_size[2] = { (size_t)(block_size.width >> 1), (size_t)(block_size.height >> 1) };
 				clERR(clEnqueueNDRangeKernel(_queue, add_2_3_conv_4x5x4_L_cl, 2, NULL, global_work_size, local_work_size, 0, NULL, NULL));
 				clERR(clEnqueueNDRangeKernel(_queue, add_2_3_conv_4x5x4_1_cl, 2, NULL, global_work_size, local_work_size, 0, NULL, NULL));
 				clERR(clEnqueueNDRangeKernel(_queue, add_2_3_conv_4x5x4_2_cl, 2, NULL, global_work_size, local_work_size, 0, NULL, NULL));
@@ -668,13 +668,13 @@ namespace NeuralNetworksLib
 		{
 			if (device_type == CL_DEVICE_TYPE_CPU)
 			{
-				size_t global_work_size[2] = { ROI.cols, ROI.rows };
+				size_t global_work_size[2] = { (size_t)ROI.cols, (size_t)ROI.rows };
 				clERR(clEnqueueNDRangeKernel(_queue, lrelu_bn_add4_tanh_add52_tanh_texmem_cl, 2, NULL, global_work_size, NULL, 0, NULL, NULL));
 			}
 			else
 			{
-				size_t global_work_size[2] = { roundUpMul(ROI.cols, block_size.width >> 1), roundUpMul(ROI.rows, block_size.height >> 1) };
-				size_t local_work_size[2] = { block_size.width >> 1, block_size.height >> 1 };
+				size_t global_work_size[2] = { (size_t)roundUpMul(ROI.cols, block_size.width >> 1), (size_t)roundUpMul(ROI.rows, block_size.height >> 1) };
+				size_t local_work_size[2] = { (size_t)(block_size.width >> 1), (size_t)(block_size.height >> 1) };
 				clERR(clEnqueueNDRangeKernel(_queue, lrelu_bn_add4_tanh_add52_tanh_texmem_cl, 2, NULL, global_work_size, local_work_size, 0, NULL, NULL));
 			}
 		}

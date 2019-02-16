@@ -72,7 +72,7 @@ namespace NeuralNetworksLib
 			inline bool isEmpty() const { return data == 0; }
 			inline void setSize(const Size& size) { width = size.width; height = size.height; }
 			inline Size getSize() const { return Size(width, height); }
-			TmpImage<type>& operator=(TmpImage<type>& _img);
+			TmpImage<type>& operator=(const TmpImage<type>& _img);
 			inline type* operator()(size_t offset = 0) const;
 			inline type& operator[](size_t idx);
 		};
@@ -240,7 +240,7 @@ namespace NeuralNetworksLib
 		}
 
 		template <typename type>
-		TmpImage<type>& TmpImage<type>::operator=(TmpImage<type>& _img)
+		TmpImage<type>& TmpImage<type>::operator=(const TmpImage<type>& _img)
 		{
 			if (this == &_img) return *this;
 			if (!isEmpty()) clear();
@@ -255,15 +255,16 @@ namespace NeuralNetworksLib
 			sharingData = _img.sharingData;
 			indices = _img.indices;
 
-			_img.width = 0;
-			_img.height = 0;
-			_img.size = 0;
-			_img.widthStep = 0;
-			_img.nChannel = 1;
-			_img.data = 0;
-			_img.alignData = 4;
-			_img.sharingData = false;
-			_img.indices = Indices();
+			TmpImage<type>* pimg = const_cast<TmpImage<type>*>(&_img);
+			pimg->width = 0;
+			pimg->height = 0;
+			pimg->size = 0;
+			pimg->widthStep = 0;
+			pimg->nChannel = 1;
+			pimg->data = 0;
+			pimg->alignData = 4;
+			pimg->sharingData = false;
+			pimg->indices = Indices();
 
 			return *this;
 		}
@@ -287,14 +288,12 @@ namespace NeuralNetworksLib
 		{
 		public:
 			TmpArray() : TmpImage<type>() { }
-			TmpArray(int _size, int _align = 0) : TmpImage<type>(_size, 1, _align) { }
-#if defined(_MSC_VER)        
-			TmpArray<type>& operator=(TmpArray<type>& _img)
+			TmpArray(int _size, int _align = 0) : TmpImage<type>(_size, 1, _align) { }     
+			TmpArray<type>& operator=(const TmpArray<type>& _img)
 			{ 
 				*((TmpImage<type>*)this) = (TmpImage<type>&)_img;
 				return *this;
 			};
-#endif
 		};
 		typedef TmpArray<uchar_> Array_8u;
 		typedef TmpArray<uint_> Array_32u;
@@ -329,13 +328,15 @@ namespace NeuralNetworksLib
 					ref = 0;
 				}
 			}
-			TmpRef<type>& operator=(TmpRef<type>& _ref)
+			TmpRef<type>& operator=(const TmpRef<type>& _ref)
 			{
 				if (this == &_ref) return *this;
 				if (!isEmpty()) clear();
 
 				ref = _ref.ref;
-				_ref.ref = 0;
+				
+				TmpRef<type>* pref = const_cast<TmpRef<type>*>(&_ref);
+				pref->ref = 0;
 
 				return *this;
 			}

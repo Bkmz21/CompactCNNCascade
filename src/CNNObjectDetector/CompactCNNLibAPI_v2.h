@@ -49,7 +49,7 @@ namespace CompactCNNLib
 		};
 		enum struct DetectPrecision
 		{
-			default = 0,
+			def = 0,
 			low = 1,
 			normal = 2,
 			high = 3,
